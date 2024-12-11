@@ -1,6 +1,6 @@
 import pytest
 from app.services.user_service import UserService
-from tests.unit.services.user_service.data_mocks import create_user_data_payload, get_users_data
+from tests.unit_tests.services.user_service.data_mocks import create_user_data_payload, get_users_data
 
 USER_REPOSITORY_PATH='app.services.user_service.UserRepository'
 
