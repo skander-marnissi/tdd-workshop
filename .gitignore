@@ -1,0 +1,60 @@
+# PyCharm project files
+.idea/
+
+# Python cache directories
+__pycache__/
+*.py[cod]
+
+# Python virtual environments
+venv/
+env/
+.venv/
+.env/
+
+# Django settings
+*.log
+*.pot
+*.pyc
+*.pyo
+*.db
+*.sqlite3
+
+# Coverage reports
+.coverage
+*.cover
+*.py,cover
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+
+# Test and pytest cache
+.cache
+nosetests.xml
+coverage.xml
+*.coveragerc
+*.tox
+*.nox
+*.hypothesis
+
+# Pytest
+*.pytest_cache/
+
+# MyPy
+.mypy_cache/
+
+# Local configuration files
+local_settings.py
+.envrc
+*.env
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+
+# JetBrains specific
+*.iml
