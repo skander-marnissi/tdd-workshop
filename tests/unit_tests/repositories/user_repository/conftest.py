@@ -4,9 +4,9 @@ from tests.unit_tests.repositories.user_repository.data_mocks import add_user_da
 
 
 @pytest.fixture
-def add_user_fixture():
+def add_user_data_fixture():
     return add_user_data()
 
 @pytest.fixture
-def get_all_users_fixture():
+def get_all_users_data_fixture():
     return all_users_data()
