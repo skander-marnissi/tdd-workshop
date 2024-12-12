@@ -1,7 +1,6 @@
 from app.models.product import Product
 from app.repositories.product_repository import ProductRepository
 
-
 class TestProductRepository:
     def test_add_product_with_valid_data(self):
         #Given
@@ -14,3 +13,6 @@ class TestProductRepository:
         #Then
         assert len(product_repository.products) == 1
         assert product_repository.products[0] == product
+
+    def test_get_products_with_valid_data(self):
+        pass

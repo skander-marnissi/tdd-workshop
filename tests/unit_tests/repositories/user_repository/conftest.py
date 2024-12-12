@@ -1,12 +1,12 @@
 import pytest
 
-from tests.unit_tests.repositories.user_repository.data_mocks import add_user_data, all_users_data
+from tests.unit_tests.repositories.user_repository.data_mocks import user_data_sample, users_data_sample
 
 
 @pytest.fixture
-def add_user_data_fixture():
-    return add_user_data()
+def user_data():
+    return user_data_sample()
 
 @pytest.fixture
-def get_all_users_data_fixture():
-    return all_users_data()
+def users_data():
+    return users_data_sample()

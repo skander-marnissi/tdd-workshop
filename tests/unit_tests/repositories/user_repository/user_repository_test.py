@@ -5,23 +5,23 @@ class TestUserRepository:
 
 
 
-    def test_add_user(self, add_user_data_fixture):
+    def test_add_user_with_valid_user_returns_updated_users_list(self, user_data):
         #Given
         user_repository = UserRepository()
 
         #When
-        user_repository.add_user(add_user_data_fixture)
+        user_repository.add_user(user_data)
 
         #Then
-        assert add_user_data_fixture in user_repository.users
+        assert user_data in user_repository.users
 
-    def test_get_all_users(self, get_all_users_data_fixture):
+    def test_get_all_users_returns_users_list(self, users_data):
         #Given
         user_repository = UserRepository()
-        user_repository.users = get_all_users_data_fixture
+        user_repository.users = users_data
 
         #When
         users = user_repository.get_all_users()
 
         #Then
-        assert users == get_all_users_data_fixture
+        assert users == users_data
