@@ -9,11 +9,12 @@ def create_user():
     payload = request.get_json()
     user_service = UserService()
 
-    required_fields = ['firstname', 'lastname', 'email', 'age', 'phone']
+    required_fields = ['id','firstname', 'lastname', 'email', 'age', 'phone']
     if not all(field in payload for field in required_fields):
         return jsonify({"error": "Missing fields"}), 400
 
     user = user_service.create_user(
+        user_id=payload.get('id'),
         firstname=payload.get('firstname'),
         lastname=payload.get('lastname'),
         email=payload.get('email'),

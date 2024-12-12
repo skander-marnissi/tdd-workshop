@@ -8,8 +8,8 @@ class UserService:
         self.repository = UserRepository()
 
 
-    def create_user(self, firstname: str, lastname: str, email: str, age: int, phone: str) -> User:
-        user = User(firstname, lastname, email, age, phone)
+    def create_user(self, user_id: str, firstname: str, lastname: str, email: str, age: int, phone: str) -> User:
+        user = User(user_id, firstname, lastname, email, age, phone)
         self.repository.add_user(user)
         return user
 

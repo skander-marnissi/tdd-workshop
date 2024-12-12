@@ -4,7 +4,8 @@ class TestUserService:
         user_service, user_repository_mock_instance = create_user_mock_fixture
 
         # When
-        user = user_service.create_user(create_user_payload_fixture['firstname'],
+        user = user_service.create_user(create_user_payload_fixture['id'],
+                                            create_user_payload_fixture['firstname'],
                                              create_user_payload_fixture['lastname'],
                                              create_user_payload_fixture['email'],
                                              create_user_payload_fixture['age'],
@@ -12,6 +13,7 @@ class TestUserService:
 
         # Then
         user_repository_mock_instance.add_user.assert_called_once()
+        assert user.id == create_user_payload_fixture['id']
         assert user.firstname == create_user_payload_fixture['firstname']
         assert user.lastname == create_user_payload_fixture['lastname']
         assert user.email == create_user_payload_fixture['email']
