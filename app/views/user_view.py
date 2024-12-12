@@ -1,12 +1,10 @@
 from flask import Blueprint, request, jsonify
-
-from app.repositories.user_repository import UserRepository
 from app.services.user_service import UserService
 
-user_bp = Blueprint('user', __name__)
+user_bp = Blueprint('users', __name__)
 
 
-@user_bp.route('/users', methods=['POST'])
+@user_bp.route('/', methods=['POST'])
 def create_user():
     payload = request.get_json()
     user_service = UserService()
@@ -24,7 +22,7 @@ def create_user():
     )
     return jsonify(user.__dict__), 201
 
-@user_bp.route('/users', methods=['GET'])
+@user_bp.route('/', methods=['GET'])
 def get_users():
     user_service = UserService()
     users = user_service.get_users()

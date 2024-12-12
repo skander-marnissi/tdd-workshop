@@ -7,7 +7,6 @@ class TestUserService:
         user = user_service.create_user(create_user_fixture['firstname'],
                                              create_user_fixture['lastname'],
                                              create_user_fixture['email'],
-
                                              create_user_fixture['age'],
                                              create_user_fixture['phone'])
 
