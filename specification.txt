@@ -1,3 +1,7 @@
+Create product endpoint for:
+    * creating products
+    * getting all products
+
 Create an order endpoint for:
     * creating order about a specific product:
         When order is created our app will check inventory through a specific api to confirm product availability,
