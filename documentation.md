@@ -139,31 +139,35 @@ Test/
 ├── conftest.py             # Shared mocks and tool fixtures
 ├── mocks/
 │   └── base_mock.py        # Abstract BaseMock class
-├── unit_test/
-│   ├── components_dir_1/   # Component directory for example (/services)
+├── unit_tests/             # Unit tests directory
+│   ├── components_dir_1/   # Component directory (e.g., /services)
 │   │   ├── conftest.py
 │   │   ├── mock_data.py
-│   │   └── test_dir_1_component_1.py
-        └── test_dir_1_component_2.py
+│   │   ├── test_component_dir_1_1.py
+│   │   └── test_component_dir_1_2.py
+│   │   ...
 │   ├── component_dir_2/
 │   │   ├── conftest.py
 │   │   ├── mock_data.py
-│   │   └── test_dir_2_component_1.py
-        └── test_dir_2_component_2.py
-            ...
-├── integration_test/
+│   │   ├── test_component_dir_2_1.py
+│   │   └── test_component_dir_2_2.py
+│   │   ...
+│   └── ...                 # Additional component directories
+├── integration_tests/      # Integration tests directory
 │   ├── integration_dir_1/
 │   │   ├── conftest.py
 │   │   ├── mock_data.py
-│   │   └── test_dir_1_integration_1.py
-            test_dir_1_integration_2.py
-            ...
-│   └── integration_dir_2/
-│       ├── conftest.py
-│       ├── mock_data.py
-│       └── test_dir_2_integration_1.py
-            test_dir_2_integration_2.py
-            ...
+│   │   ├── test_integration_dir_1_1.py
+│   │   └── test_integration_dir_1_2.py
+│   │   ...
+│   ├── integration_dir_2/
+│   │   ├── conftest.py
+│   │   ├── mock_data.py
+│   │   ├── test_integration_dir_2_1.py
+│   │   └── test_integration_dir_2_2.py
+│   │   ...
+│   └── ...                 # Additional integration directories
+
 ```
 
 ## Unit Tests
