@@ -142,7 +142,18 @@ log_cli_data_format = %Y-%m-%d %H:%M:%S             # Defines the date format fo
 - **Example**: Testing `user_auth.py` -> `user_auth_test.py`
 
 ### Test methods
-- Naming pattern: `test_<UnitOfWork>_<Scenario>_<ExpectedOutcome>`
+- Naming pattern: `test_<unit_of_work>_<scenario>_<expected_outcome>`
+
+#### Explanation:
+**unit_of_work**: 
+  [To be completed]
+  Example: [To be completed]
+**scenario**:
+  [To be completed]
+  Example: [To be completed]
+**expected_outcome**:
+   [To be completed]
+  Example: [To be completed]
 
 #### Example:
 ```python
@@ -157,8 +168,8 @@ def test_checkout_with_empty_cart_raises_error():
 ```
 
 ### Edge cases
-- Include specific edge cases in the test name using `edge_case_<describe_edge_case>`.
-- Use keywords like `with_valid_params` for different parameter types.
+- Include specific edge cases in the test name using `edge_case_<edge_case_name>`.
+- Use keywords like `with_valid_params` or `with_invalid_params` depending on the case for different parameter types.
 
 ### Test fixtures
 
@@ -173,17 +184,17 @@ def test_checkout_with_empty_cart_raises_error():
 
 ## Test directory layout
 ```
-Test/
+tests/
 ├── conftest.py             # Shared mocks and tool fixtures
 ├── mocks/
 │   └── base_mock.py        # Abstract BaseMock class
 ├── unit_tests/             # Unit tests directory
 │   ├── components_dir_1/   # Component directory (e.g., /services)
-│   │   ├── conftest.py
-│   │   ├── mock_data.py
-│   │   ├── test_component_dir_1_1.py
+│   │   ├── conftest.py     # Shared mocks fixtures for current component directory
+│   │   ├── mock_data.py    # Shared data mocks samples for current component directory
+│   │   ├── test_component_dir_1_1.py  # Component test file
 │   │   └── test_component_dir_1_2.py
-│   │   ...
+│   │   ...                # Additional component test files
 │   ├── component_dir_2/
 │   │   ├── conftest.py
 │   │   ├── mock_data.py
@@ -191,13 +202,13 @@ Test/
 │   │   └── test_component_dir_2_2.py
 │   │   ...
 │   └── ...                 # Additional component directories
-├── integration_tests/      # Integration tests directory
+├── integration_tests/      # Integration tests directory (e.g., /views)
 │   ├── integration_dir_1/
-│   │   ├── conftest.py
-│   │   ├── mock_data.py
-│   │   ├── test_integration_dir_1_1.py
+│   │   ├── conftest.py     # Shared data mocks samples for current integration directory
+│   │   ├── mock_data.py    # Shared mocks fixtures for current integration directory
+│   │   ├── test_integration_dir_1_1.py      # Integration test file
 │   │   └── test_integration_dir_1_2.py
-│   │   ...
+│   │   ...                 # Additional integration test files
 │   ├── integration_dir_2/
 │   │   ├── conftest.py
 │   │   ├── mock_data.py
@@ -208,36 +219,34 @@ Test/
 
 ```
 
-## Unit Tests
-
-### Characteristics
-[To be completed]
-
-### Mocking
-[To be completed]
-
-## Integration Tests
-
-### Characteristics
-- **Focus on Component Interactions**: Validates communication and data flow between components.
-- **End-to-End Scenarios**: Tests functionality involving multiple components, APIs, or external services.
-- **Real or Mocked Dependencies**: Simulate dependencies like databases or APIs.
-
-### Mocking
-- **Third-Party Systems**: Mock API responses using `request_mock` fixtures to simulate interactions.
-- **Database Mocking**: Ensure isolated and realistic test environments with options such as Docker containers or dedicated testing databases.
-
 ## Test-Driven Development (TDD)
 
+Test-Driven Development is a software development methodology in which tests are written before writing the actual code. This approach ensures that the system's functionality is continuously validated and that code changes do not introduce regressions. The process follows a simple cycle: write a failing test, implement the minimum code to pass the test, and then refactor the code for quality and maintainability. TDD encourages writing clean, testable code from the start and improves both the reliability and maintainability of the codebase.
+
 ### Red-Green-Refactor Methodology
-- **Red**: [To be completed]
-- **Green**: [To be completed]
-- **Refactor**: [To be completed]
+
+- **Red**: 
+  - The first step is to write a test for a feature or functionality that does not exist yet. At this point, the test will fail because the corresponding code has not been written. The failure (Red) is intentional and serves as a signal that the code is   incomplete. This step helps to clarify the desired behavior of the system.
+  - **Example**: Write a test that expects a new function, such as `add_item_to_cart()`, to return the updated cart with an item added, even though this function has not been implemented yet.
+
+- **Green**:
+  - The second step is to write the minimum amount of code necessary to make the test pass. The goal is not to write the perfect solution but simply to pass the test. Once the test passes (Green), we know that the feature works as expected in the context of the specific test case.
+  - **Example**: Implement the `add_item_to_cart()` function with basic logic that adds an item to the cart. This minimal implementation ensures that the test passes, even if the solution is not optimal.
+
+- **Refactor**:
+  - The final step is to refactor the code to improve its design, structure, or performance without changing its functionality. This step is performed after the test passes and ensures that the codebase remains clean and maintainable. During this phase, the focus is on eliminating duplication, improving readability, and optimizing performance.
+  - **Example**: After making the test pass, refactor the `add_item_to_cart()` function to handle edge cases (e.g., adding items to an empty cart), improve error handling, or apply design patterns for better scalability or flexibility.
+
+### Key Principles of TDD:
+- **Write Tests First**: Always write a test before writing the implementation. This ensures that the code is testable and that you are focusing on the required functionality.
+- **Fail First**: The test should fail initially because the functionality has not been implemented.
+- **Small Iterations**: Focus on one small feature or functionality at a time, keeping the iterations short and the scope narrow.
+- **Continuous Refactoring**: Refactor code regularly to keep it clean, efficient, and maintainable without changing its external behavior.
+- **Confidence in Changes**: With a comprehensive suite of tests, you can make changes to the codebase with confidence, knowing that the tests will catch any regressions or broken functionality.
+
+By following the Red-Green-Refactor cycle, TDD helps ensure that code is both well-tested and of high quality. It also encourages a design process where functionality is validated early, and code is refactored for maintainability.
 
 ## Test Debugger Configuration
 
 ### VS Code
-[To be completed]
-
-### PyCharm
 [To be completed]
