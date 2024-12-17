@@ -378,9 +378,12 @@ Follow these steps to configure and debug your tests within Visual Studio Code:
         }
       ]
     }
+
 5. **Run the tests**
-Return to the Testing icon in the sidebar. You should now be able to run and debug your tests directly from the VS Code interface. Once your tests appear in the test explorer, you can run, debug, or view results interactively.
-Make sure to put some breakpoints in the test to perform a step by step debugging.
+- Return to the Testing icon in the sidebar.
+- You should now be able to run and debug your tests directly from the VS Code interface.
+- Once your tests appear in the test explorer, you can run, debug, or view results interactively.
+- Make sure to put some breakpoints in the test to perform a step by step debugging.
 ---
 
 ## Special thanks
