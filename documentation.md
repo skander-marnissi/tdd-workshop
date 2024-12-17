@@ -3,10 +3,20 @@
 ## Required Tests
 
 ### Unit Tests
-- Unit testing and component testing.
+Unit tests are essential for verifying the functionality of individual components or functions in isolation, ensuring that each unit performs as expected. 
+
+Characteristics:
+- Focus on testing small, isolated pieces of functionality (functions, methods, or classes).
+- Independent of external systems such as databases, APIs, or file systems.
+- Fast and lightweight, facilitating quick feedback during development.
 
 ### Integration Tests
-- Testing interaction between components.
+Integration tests ensure that different modules or components of a system interact correctly, verifying the data flow and communication between them.
+
+Characteristics:
+- Validate interactions between components, such as services, databases, APIs, and external systems.
+- Test end-to-end scenarios involving multiple components.
+- May use real or mocked dependencies to simulate component interactions.
 
 ## Required Test Coverage
 - **Minimum coverage**: 80% of the codebase.
