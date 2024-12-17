@@ -135,9 +135,9 @@ log_cli_format = %(asctime)s [%(levelname)s]        # Specifies the format for t
 log_cli_data_format = %Y-%m-%d %H:%M:%S             # Defines the date format for the timestamp in log messages.
 ```
 
-## Tests Naming Patterns
+## Tests naming patterns
 
-### Test Files
+### Test files
 
 **Naming pattern**: `<module_or_feature>_test.py`
 
@@ -149,11 +149,11 @@ log_cli_data_format = %Y-%m-%d %H:%M:%S             # Defines the date format fo
   - `user_auth_test.py`: Tests related to the `user_auth` module.
   - `cart_test.py`: Tests specifically targeting cart-related functionalities.
 
-- **Best Practices**:  
+- **Best practices**:  
   - Keep test files focused on a single module or closely related set of features.
   - Match the naming between the target code file and its corresponding test file for easy navigation.
 
-### Test Methods
+### Test methods
 
 **Naming pattern**: `test_<unit_of_work>_<scenario>_<expected_outcome>`
 
@@ -179,11 +179,11 @@ log_cli_data_format = %Y-%m-%d %H:%M:%S             # Defines the date format fo
 - Include specific edge cases in the test name using `edge_case_<edge_case_name>`.
 - Use keywords like `with_valid_params` or `with_invalid_params` depending on the case for different parameter types.
 
-## Fixtures and Data Mocks Naming
+## Fixtures and data mocks naming
 
 When organizing your test fixtures and mock data, consistency and clarity are key. This allows developers to quickly understand the purpose of each fixture or mock, reducing confusion and maintenance overhead.
 
-### Mock Fixtures
+### Mock fixtures
 
 **Naming pattern**: `mock_<subject>_<scenario>`
 
@@ -196,12 +196,12 @@ When organizing your test fixtures and mock data, consistency and clarity are ke
   - `mock_get_users_with_valid_data`: A mock fixture simulating the `get_users` function returning valid data.
   - `mock_process_order_with_invalid_data`: A mock fixture simulating a function that processes orders with invalid input.
 
-- **Best Practices**:  
+- **Best practices**:  
   - Keep scenario names concise and descriptive to highlight what distinguishes one mock from another.  
   - Centralize and import predefined data samples from `mock_data.py` to ensure consistent datasets.  
   - Reuse mock fixtures across multiple tests to maintain consistency and reduce duplication.
 
-### Tools Fixtures
+### Tools fixtures
 
 **Naming pattern**: `<tool_name>`
 
@@ -214,11 +214,11 @@ Use this naming convention for fixtures that provide testing utilities or tools 
   - `logger`: A fixture providing a logging tool.
   - `db_connection`: A fixture establishing a database connection for tests.
 
-- **Best Practices**:  
+- **Best practices**:  
   - Keep tool fixtures stateless or idempotent whenever possible.  
   - Avoid embedding business logic; these fixtures should serve as helpers or utilities to facilitate testing.
  
-### Data Mocks
+### Data mocks
 
 **Naming pattern**: `<model_name>_<type>_<scenario>`
 
@@ -233,7 +233,7 @@ Use this naming convention for fixtures that provide testing utilities or tools 
   - `user_response_missing_email`: A `user_response` mock where the `email` field is intentionally omitted.
   - `user_response_empty_list`: A `user_response` mock representing an empty result set.
 
-- **Best Practices**:  
+- **Best practices**:  
   - Keep scenario names concise and descriptive to highlight what distinguishes one data set from another.  
   - Store all data mocks in a central file (e.g., `mock_data.py`) for consistency and easy maintenance.  
   - Document each scenario within the mock data file so other developers understand the differences and intended uses of each variant.
@@ -322,25 +322,30 @@ Follow these steps to configure and debug your tests within Visual Studio Code:
      "python.testing.unittestEnabled": false,
      "python.testing.pytestEnabled": true
    }
-4. **Add Debug Configuration in `launch.json`**
-```json
-{
-  "version": "0.2.0",
-  "configurations": [
-    {
-      "name": "Debug Unit Test",
-      "type": "debugpy",
-      "request": "launch",
-      "justMyCode": false,
-      "purpose": ["debug-test"],
-      "console": "integratedTerminal",
-      "env": {
-        "PYTEST_ADDOPTS": "--no-cov"
+4. **Add debug configuration in `launch.json`**
+  ```json
+  {
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Debug Unit Test",
+        "type": "debugpy",
+        "request": "launch",
+        "justMyCode": false,
+        "purpose": ["debug-test"],
+        "console": "integratedTerminal",
+        "env": {
+          "PYTEST_ADDOPTS": "--no-cov"
+        }
       }
-    }
-  ]
-}
-```
-5. **Run the Tests**
+    ]
+  }
+  ```
+5. **Run the tests**
 Return to the Testing icon in the sidebar. You should now be able to run and debug your tests directly from the VS Code interface. Once your tests appear in the test explorer, you can run, debug, or view results interactively.
 Make sure to put some breakpoints in the test to perform a step by step debugging.
+---
+
+**Special Thanks**:  
+A heartfelt appreciation to the entire automation team. This documentation, along with its standards and practices, is a direct result of their dedication, collaboration, and continuous effort.
+
