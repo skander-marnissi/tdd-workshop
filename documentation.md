@@ -1,8 +1,8 @@
-# Testing Standards Guide
+# Testing standards guide
 
-## Required Tests
+## Required tests
 
-### Unit Tests
+### Unit tests
 Unit tests are essential for verifying the functionality of individual components or functions in isolation, ensuring that each unit performs as expected. 
 
 Characteristics:
@@ -10,7 +10,7 @@ Characteristics:
 - Independent of external systems such as databases, APIs, or file systems.
 - Fast and lightweight, facilitating quick feedback during development.
 
-### Integration Tests
+### Integration tests
 Integration tests ensure that different modules or components of a system interact correctly, verifying the data flow and communication between them.
 
 Characteristics:
@@ -18,36 +18,68 @@ Characteristics:
 - Test end-to-end scenarios involving multiple components.
 - May use real or mocked dependencies to simulate component interactions.
 
-## Required Test Coverage
-- **Minimum coverage**: 80% of the codebase.
-- **Why**: We apply the Pareto Principle, which states that 80% of all bugs can be found in 20% of program modules.
+## Required test coverage
+
+### Test Coverage Requirements
+- **Minimum Coverage**: 80% of the codebase.
+- **Reason**: 
+  - This threshold applies the **Pareto Principle**, which suggests that 80% of bugs are typically found in 20% of the modules.
+  - Ensuring this level of coverage helps identify and address potential issues early in development.
+
+### Checking Test Coverage
+Test coverage must be verified before pushing changes to the remote branch. Use the following `pytest` command to generate an HTML coverage report:
+
+```bash
+pytest --cov=<your_package_name> --cov-report=html
+```
+
+- Replace `<your_package_name>` with the name of the package or directory you want to measure coverage for.
+- This command creates a detailed HTML report in a `htmlcov` directory, which can be opened in a browser for review.
 
 ## Mocking
+
+### General guidelines
 - Use a shared directory containing a `BaseMock` abstract class, implemented for each specific mock needed during testing.
 - Avoid defining mocks directly in test files; use a dedicated file for mock definitions.
 - Use `unittest.mock` to mock method behaviors or responses.
 - Centralize all mocked data in a `Mocks` data file.
 
-## Test Dependencies
+### Mocking third-party systems
+- Mock API responses using `request_mock` fixtures to simulate external system behavior.
+- Avoid directly patching functions that can be naturally invoked during integration tests to ensure realistic simulations.
 
-### Testing Dependency
-- **pytest**
+### Database mocking options (To be studied):
+- **In-Memory Database**: Lightweight but may lack real-world simulation capabilities.
+- **Throwable Docker Containers**: Use database images to create isolated environments during testing.
+- **Dedicated Testing Database**: Set up a real database instance exclusively for test purposes to ensure high-fidelity simulations.
 
-### Mocks
-- **pytest-mock**
+## Test dependencies
+
+### Testing dependency
+- **pytest**: The core framework for running Python tests.
 
 ### Coverage
-- **pytest-coverage**
+- **pytest-cov**: : Measures test coverage and integrates it with **pytest**
 
-## Test Configuration
+### Mocks and stubbing
+- **pytest-mock**: Integrates **unittest.mock** with pytest for mocking functionality.
+- **pytest-faker**: : Provides fake data generation via **faker**.
 
-### Test Configurations
+### Performance and stress testing
+- **pytest-benchmark**: Measures code performance during tests.
+
+### Specialized testing
+- **pytest-flask**: Adds support for Flask applications.
+
+## Test configuration
+
+### Test configurations
 - Defined and read from a `config.json` file located in the project root directory.
 
-### Pytest Configuration
+### Pytest configuration
 - Configurations defined in `pytest.ini` located in the project root directory.
 
-#### Base `pytest.ini` Configuration:
+#### Base `pytest.ini` configuration:
 ```ini
 [pytest]
 minversion = 8.0
@@ -65,13 +97,13 @@ log_cli_format = %(asctime)s [%(levelname)s]
 log_cli_data_format = %Y-%m-%d %H:%M:%S
 ```
 
-## Test Naming Patterns
+## Test naming patterns
 
-### Test Files
+### Test files
 - Naming pattern: `<module_or_feature>_test.py`
 - **Example**: Testing `user_auth.py` -> `user_auth_test.py`
 
-### Test Methods
+### Test methods
 - Naming pattern: `test_<UnitOfWork>_<Scenario>_<ExpectedOutcome>`
 
 #### Example:
@@ -86,46 +118,52 @@ def test_checkout_with_empty_cart_raises_error():
     pass
 ```
 
-### Edge Cases
+### Edge cases
 - Include specific edge cases in the test name using `edge_case_<describe_edge_case>`.
 - Use keywords like `with_valid_params` for different parameter types.
 
-### Test Fixtures
+### Test fixtures
 
-#### Mock Fixtures
+#### Mock fixtures
 - Naming pattern: `mock_<subject>`.
   - **Example**: `mock_get_users_with_valid_data`
 - Import pre-defined data samples from `data_mocks.py`.
 
-#### Tools Fixtures
+#### Tools fixtures
 - Naming pattern: `<ToolName>`.
   - **Example**: `Client`, `Mocker`, `Logger`, `Db_connection`.
 
-## Test Directory Layout
+## Test directory layout
 ```
 Test/
-├── conftest.py             # Shared mocks and data fixtures
+├── conftest.py             # Shared mocks and tool fixtures
 ├── mocks/
 │   └── base_mock.py        # Abstract BaseMock class
 ├── unit_test/
-│   ├── components_dir_1/
-│   │   ├── component_1/
-│   │   │   ├── conftest.py
-│   │   │   ├── mock_data.py
-│   │   │   └── test_component1.py
-│   │   └── component_2/
-│   │       ├── conftest.py
-│   │       ├── mock_data.py
-│   │       └── test_component2.py
-├── integration_test/
-│   ├── integration1/
+│   ├── components_dir_1/   # Component directory for example (/services)
 │   │   ├── conftest.py
 │   │   ├── mock_data.py
-│   │   └── test_integration1.py
-│   └── integration2/
+│   │   └── test_dir_1_component_1.py
+        └── test_dir_1_component_2.py
+│   ├── component_dir_2/
+│   │   ├── conftest.py
+│   │   ├── mock_data.py
+│   │   └── test_dir_2_component_1.py
+        └── test_dir_2_component_2.py
+            ...
+├── integration_test/
+│   ├── integration_dir_1/
+│   │   ├── conftest.py
+│   │   ├── mock_data.py
+│   │   └── test_dir_1_integration_1.py
+            test_dir_1_integration_2.py
+            ...
+│   └── integration_dir_2/
 │       ├── conftest.py
 │       ├── mock_data.py
-│       └── test_integration2.py
+│       └── test_dir_2_integration_1.py
+            test_dir_2_integration_2.py
+            ...
 ```
 
 ## Unit Tests
@@ -144,11 +182,8 @@ Test/
 - **Real or Mocked Dependencies**: Simulate dependencies like databases or APIs.
 
 ### Mocking
-- **Third-Party Systems**: Mock API responses using `request_mock` fixtures.
-- **Database Mocking**: [Options to be studied]
-  - In-memory database.
-  - Throwable Docker containers with database images.
-  - Real database for testing purposes.
+- **Third-Party Systems**: Mock API responses using `request_mock` fixtures to simulate interactions.
+- **Database Mocking**: Ensure isolated and realistic test environments with options such as Docker containers or dedicated testing databases.
 
 ## Test-Driven Development (TDD)
 
