@@ -1,4 +1,42 @@
-# Testing standards guide
+# Testing Standards
+
+## Summary
+- [Required Tests](#required-tests)
+  - [Unit Tests](#unit-tests)
+  - [Integration Tests](#integration-tests)
+- [Test Coverage](#test-coverage)
+  - [Coverage Requirements](#coverage-requirements)
+  - [Coverage Configuration](#coverage-configuration)
+  - [Checking Coverage](#checking-coverage)
+- [Mocking](#mocking)
+  - [General Guidelines](#general-guidelines)
+  - [Mocking Third-Party Systems](#mocking-third-party-systems)
+  - [Database Mocking Options](#database-mocking-options-to-be-studied)
+- [Test Dependencies](#test-dependencies)
+  - [Testing Dependency](#testing-dependency)
+  - [Coverage](#coverage)
+  - [Mocks and Stubbing](#mocks-and-stubbing)
+  - [Performance and Stress Testing](#performance-and-stress-testing)
+  - [Specialized Testing](#specialized-testing)
+- [Test Configuration](#test-configuration)
+  - [Test Configurations](#test-configurations)
+  - [Pytest Configuration](#pytest-configuration)
+- [Tests Naming Patterns](#tests-naming-patterns)
+  - [Test Files](#test-files)
+  - [Test Methods](#test-methods)
+  - [Edge Cases](#edge-cases)
+- [Fixtures and Data Mocks Naming](#fixtures-and-data-mocks-naming)
+  - [Mock Fixtures](#mock-fixtures)
+  - [Tools Fixtures](#tools-fixtures)
+  - [Data Mocks](#data-mocks)
+- [Test Directory Layout](#test-directory-layout)
+- [Test-Driven Development (TDD)](#test-driven-development-tdd)
+  - [Red-Green-Refactor Methodology](#red-green-refactor-methodology)
+  - [Key Principles of TDD](#key-principles-of-tdd)
+- [Visual Studio Code Test Debugging Configuration](#visual-studio-code-test-debugging-configuration)
+- [Special Thanks](#special-thanks)
+
+---
 
 ## Required tests
 
@@ -345,6 +383,6 @@ Return to the Testing icon in the sidebar. You should now be able to run and deb
 Make sure to put some breakpoints in the test to perform a step by step debugging.
 ---
 
-**Special Thanks**:  
+## Special thanks
 A heartfelt appreciation to the entire automation team. This documentation, along with its standards and practices, is a direct result of our dedication, collaboration, and continuous effort.
 
