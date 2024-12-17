@@ -280,7 +280,7 @@ tests/
 
 Test-Driven Development is a software development methodology in which tests are written before writing the actual code. This approach ensures that the system's functionality is continuously validated and that code changes do not introduce regressions. The process follows a simple cycle: write a failing test, implement the minimum code to pass the test, and then refactor the code for quality and maintainability. TDD encourages writing clean, testable code from the start and improves both the reliability and maintainability of the codebase.
 
-### Red-Green-Refactor Methodology
+### Red-Green-Refactor methodology
 
 - **Red**: 
   - The first step is to write a test for a feature or functionality that does not exist yet. At this point, the test will fail because the corresponding code has not been written. The failure (Red) is intentional and serves as a signal that the code is   incomplete. This step helps to clarify the desired behavior of the system.
@@ -294,14 +294,53 @@ Test-Driven Development is a software development methodology in which tests are
   - The final step is to refactor the code to improve its design, structure, or performance without changing its functionality. This step is performed after the test passes and ensures that the codebase remains clean and maintainable. During this phase, the focus is on eliminating duplication, improving readability, and optimizing performance.
   - **Example**: After making the test pass, refactor the `add_item_to_cart()` function to handle edge cases (e.g., adding items to an empty cart), improve error handling, or apply design patterns for better scalability or flexibility.
 
-### Key Principles of TDD:
+### Key principles of TDD:
 - **Write Tests First**: Always write a test before writing the implementation. This ensures that the code is testable and that you are focusing on the required functionality.
 - **Fail First**: The test should fail initially because the functionality has not been implemented.
 - **Small Iterations**: Focus on one small feature or functionality at a time, keeping the iterations short and the scope narrow.
 - **Continuous Refactoring**: Refactor code regularly to keep it clean, efficient, and maintainable without changing its external behavior.
 - **Confidence in Changes**: With a comprehensive suite of tests, you can make changes to the codebase with confidence, knowing that the tests will catch any regressions or broken functionality.
 
-## Test Debugger Configuration
+### Visual studio code test debugging configuration
 
-### Visual code studio
-[To be completed]
+Follow these steps to configure and debug your tests within Visual Studio Code:
+
+1. **Install python extension**  
+   Ensure you have the **Python** extension installed from the VS Code marketplace.
+
+2. **Locate the tests directory**  
+   Click the **Testing** icon in the sidebar (the beaker icon) to reveal your tests directory and test files in the UI.
+
+3. **Update `settings.json`**  
+   In the `.vscode` directory of your project, add or update the `settings.json` file with the following configuration to enable `pytest`:
+
+   ```json
+   {
+     "python.testing.pytestArgs": [
+       "tests"
+     ],
+     "python.testing.unittestEnabled": false,
+     "python.testing.pytestEnabled": true
+   }
+4. **Add Debug Configuration in `launch.json`**
+```json
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug Unit Test",
+      "type": "debugpy",
+      "request": "launch",
+      "justMyCode": false,
+      "purpose": ["debug-test"],
+      "console": "integratedTerminal",
+      "env": {
+        "PYTEST_ADDOPTS": "--no-cov"
+      }
+    }
+  ]
+}
+```
+5. **Run the Tests**
+Return to the Testing icon in the sidebar. You should now be able to run and debug your tests directly from the VS Code interface. Once your tests appear in the test explorer, you can run, debug, or view results interactively.
+Make sure to put some breakpoints in the test to perform a step by step debugging.
