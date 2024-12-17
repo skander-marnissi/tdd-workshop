@@ -135,52 +135,109 @@ log_cli_format = %(asctime)s [%(levelname)s]        # Specifies the format for t
 log_cli_data_format = %Y-%m-%d %H:%M:%S             # Defines the date format for the timestamp in log messages.
 ```
 
-## Test naming patterns
+## Tests Naming Patterns
 
-### Test files
-- Naming pattern: `<module_or_feature>_test.py`
-- **Example**: Testing `user_auth.py` -> `user_auth_test.py`
+### Test Files
 
-### Test methods
-- Naming pattern: `test_<unit_of_work>_<scenario>_<expected_outcome>`
+**Naming pattern**: `<module_or_feature>_test.py`
 
-#### Explanation:
-**unit_of_work**: 
-  [To be completed]
-  Example: [To be completed]
-**scenario**:
-  [To be completed]
-  Example: [To be completed]
-**expected_outcome**:
-   [To be completed]
-  Example: [To be completed]
+- **Description**:  
+  This pattern associates each test file directly with the module or feature it tests.  
+  - `<module_or_feature>` should clearly identify the functionality under test (e.g., `user_auth`, `cart`, `database`).
 
-#### Example:
-```python
-def test_add_item_to_cart_with_valid_data_returns_updated_cart():
-    pass
+- **Examples**:  
+  - `user_auth_test.py`: Tests related to the `user_auth` module.
+  - `cart_test.py`: Tests specifically targeting cart-related functionalities.
 
-def test_remove_item_from_cart_when_item_exists_returns_success():
-    pass
+- **Best Practices**:  
+  - Keep test files focused on a single module or closely related set of features.
+  - Match the naming between the target code file and its corresponding test file for easy navigation.
 
-def test_checkout_with_empty_cart_raises_error():
-    pass
-```
+### Test Methods
+
+**Naming pattern**: `test_<unit_of_work>_<scenario>_<expected_outcome>`
+
+- **Description**:  
+  Break down test names into three distinct parts to clearly convey intent:  
+  - `<unit_of_work>`: Identifies the specific functionality, method, or class under test. (e.g., `add_item_to_cart`, `remove_item_from_cart`, `checkout`)  
+  - `<scenario>`: Describes the context, condition, or inputs of the test. (e.g., `with_valid_data`, `when_item_does_not_exist`, `with_empty_cart`)  
+  - `<expected_outcome>`: Defines the anticipated result or behavior. (e.g., `returns_updated_cart`, `raises_error`, `returns_success`)
+
+- **Examples**:  
+  ```python
+  def test_add_item_to_cart_with_valid_data_returns_updated_cart():
+      pass
+
+  def test_remove_item_from_cart_when_item_does_not_exist_raises_error():
+      pass
+
+  def test_checkout_with_empty_cart_raises_error():
+      pass
+  ```
 
 ### Edge cases
 - Include specific edge cases in the test name using `edge_case_<edge_case_name>`.
 - Use keywords like `with_valid_params` or `with_invalid_params` depending on the case for different parameter types.
 
-### Test fixtures
+## Fixtures and Data Mocks Naming
 
-#### Mock fixtures
-- Naming pattern: `mock_<subject>`.
-  - **Example**: `mock_get_users_with_valid_data`
-- Import pre-defined data samples from `data_mocks.py`.
+When organizing your test fixtures and mock data, consistency and clarity are key. This allows developers to quickly understand the purpose of each fixture or mock, reducing confusion and maintenance overhead.
 
-#### Tools fixtures
-- Naming pattern: `<ToolName>`.
-  - **Example**: `Client`, `Mocker`, `Logger`, `Db_connection`.
+### Mock Fixtures
+
+**Naming pattern**: `mock_<subject>_<scenario>`
+
+- **Description**:  
+  When multiple variations of the same mocked functionality are needed, append a scenario descriptor to differentiate them.  
+  - `<subject>` identifies the function, class, or external resource being mocked (e.g., `get_users`, `process_order`).  
+  - `<scenario>` describes how this particular mock differs from the baseline (e.g., `with_valid_data`, `with_invalid_data`).
+
+- **Examples**:  
+  - `mock_get_users_with_valid_data`: A mock fixture simulating the `get_users` function returning valid data.
+  - `mock_process_order_with_invalid_data`: A mock fixture simulating a function that processes orders with invalid input.
+
+- **Best Practices**:  
+  - Keep scenario names concise and descriptive to highlight what distinguishes one mock from another.  
+  - Centralize and import predefined data samples from `mock_data.py` to ensure consistent datasets.  
+  - Reuse mock fixtures across multiple tests to maintain consistency and reduce duplication.
+
+### Tools Fixtures
+
+**Naming pattern**: `<tool_name>`
+
+- **Description**:  
+Use this naming convention for fixtures that provide testing utilities or tools rather than mocked functionality. The `<tool_name>` should be clear and self-explanatory, indicating the utility’s purpose or function in the test environment.
+
+- **Examples**:  
+  - `client`: A fixture providing a test client instance for making API requests.
+  - `mocker`: A fixture integrating `pytest-mock` features for easy mocking.
+  - `logger`: A fixture providing a logging tool.
+  - `db_connection`: A fixture establishing a database connection for tests.
+
+- **Best Practices**:  
+  - Keep tool fixtures stateless or idempotent whenever possible.  
+  - Avoid embedding business logic; these fixtures should serve as helpers or utilities to facilitate testing.
+ 
+### Data Mocks
+
+**Naming pattern**: `<model_name>_<type>_<scenario>`
+
+- **Description**:  
+  When multiple variations of the same data model and type are needed, append a scenario descriptor to differentiate them.  
+  - `<model_name>` identifies the entity (e.g., `user`, `order`, `product`).  
+  - `<type>` indicates the kind of data (e.g., `response`, `payload`, `list`, `detail`).  
+  - `<scenario>` describes how this particular data set differs from the baseline (e.g., `valid`, `missing_email`, `empty_list`).
+
+- **Examples**:  
+  - `user_response_valid`: A `user_response` mock with valid user data.
+  - `user_response_missing_email`: A `user_response` mock where the `email` field is intentionally omitted.
+  - `user_response_empty_list`: A `user_response` mock representing an empty result set.
+
+- **Best Practices**:  
+  - Keep scenario names concise and descriptive to highlight what distinguishes one data set from another.  
+  - Store all data mocks in a central file (e.g., `mock_data.py`) for consistency and easy maintenance.  
+  - Document each scenario within the mock data file so other developers understand the differences and intended uses of each variant.
+
 
 ## Test directory layout
 ```
@@ -244,9 +301,7 @@ Test-Driven Development is a software development methodology in which tests are
 - **Continuous Refactoring**: Refactor code regularly to keep it clean, efficient, and maintainable without changing its external behavior.
 - **Confidence in Changes**: With a comprehensive suite of tests, you can make changes to the codebase with confidence, knowing that the tests will catch any regressions or broken functionality.
 
-By following the Red-Green-Refactor cycle, TDD helps ensure that code is both well-tested and of high quality. It also encourages a design process where functionality is validated early, and code is refactored for maintainability.
-
 ## Test Debugger Configuration
 
-### VS Code
+### Visual code studio
 [To be completed]
