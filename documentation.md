@@ -323,29 +323,28 @@ Follow these steps to configure and debug your tests within Visual Studio Code:
      "python.testing.pytestEnabled": true
    }
 4. **Add debug configuration in `launch.json`**
-  ```json
-  {
-    "version": "0.2.0",
-    "configurations": [
-      {
-        "name": "Debug Unit Test",
-        "type": "debugpy",
-        "request": "launch",
-        "justMyCode": false,
-        "purpose": ["debug-test"],
-        "console": "integratedTerminal",
-        "env": {
-          "PYTEST_ADDOPTS": "--no-cov"
+    ```json
+    {
+      "version": "0.2.0",
+      "configurations": [
+        {
+          "name": "Debug Unit Test",
+          "type": "debugpy",
+          "request": "launch",
+          "justMyCode": false,
+          "purpose": ["debug-test"],
+          "console": "integratedTerminal",
+          "env": {
+            "PYTEST_ADDOPTS": "--no-cov"
+          }
         }
-      }
-    ]
-  }
-  ```
+      ]
+    }
 5. **Run the tests**
 Return to the Testing icon in the sidebar. You should now be able to run and debug your tests directly from the VS Code interface. Once your tests appear in the test explorer, you can run, debug, or view results interactively.
 Make sure to put some breakpoints in the test to perform a step by step debugging.
 ---
 
 **Special Thanks**:  
-A heartfelt appreciation to the entire automation team. This documentation, along with its standards and practices, is a direct result of their dedication, collaboration, and continuous effort.
+A heartfelt appreciation to the entire automation team. This documentation, along with its standards and practices, is a direct result of our dedication, collaboration, and continuous effort.
 
