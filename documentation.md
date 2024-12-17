@@ -1,40 +1,40 @@
 # Testing Standards
 
 ## Summary
-- [Required Tests](#required-tests)
-  - [Unit Tests](#unit-tests)
-  - [Integration Tests](#integration-tests)
-- [Test Coverage](#test-coverage)
-  - [Coverage Requirements](#coverage-requirements)
-  - [Coverage Configuration](#coverage-configuration)
-  - [Checking Coverage](#checking-coverage)
-- [Mocking](#mocking)
-  - [General Guidelines](#general-guidelines)
-  - [Mocking Third-Party Systems](#mocking-third-party-systems)
-  - [Database Mocking Options](#database-mocking-options-to-be-studied)
-- [Test Dependencies](#test-dependencies)
-  - [Testing Dependency](#testing-dependency)
+- [Required tests](#required-tests)
+  - [Unit tests](#unit-tests)
+  - [Integration tests](#integration-tests)
+- [Test dependencies](#test-dependencies)
+  - [Testing dependency](#testing-dependency)
   - [Coverage](#coverage)
-  - [Mocks and Stubbing](#mocks-and-stubbing)
-  - [Performance and Stress Testing](#performance-and-stress-testing)
-  - [Specialized Testing](#specialized-testing)
-- [Test Configuration](#test-configuration)
-  - [Test Configurations](#test-configurations)
-  - [Pytest Configuration](#pytest-configuration)
-- [Tests Naming Patterns](#tests-naming-patterns)
-  - [Test Files](#test-files)
-  - [Test Methods](#test-methods)
-  - [Edge Cases](#edge-cases)
-- [Fixtures and Data Mocks Naming](#fixtures-and-data-mocks-naming)
-  - [Mock Fixtures](#mock-fixtures)
-  - [Tools Fixtures](#tools-fixtures)
-  - [Data Mocks](#data-mocks)
-- [Test Directory Layout](#test-directory-layout)
-- [Test-Driven Development (TDD)](#test-driven-development-tdd)
-  - [Red-Green-Refactor Methodology](#red-green-refactor-methodology)
-  - [Key Principles of TDD](#key-principles-of-tdd)
-- [Visual Studio Code Test Debugging Configuration](#visual-studio-code-test-debugging-configuration)
-- [Special Thanks](#special-thanks)
+  - [Mocks and stubbing](#mocks-and-stubbing)
+  - [Performance and stress testing](#performance-and-stress-testing)
+  - [Specialized testing](#specialized-testing)
+- [Test configuration](#test-configuration)
+  - [Test configurations](#test-configurations)
+  - [Pytest configuration](#pytest-configuration)
+- [Tests naming patterns](#tests-naming-patterns)
+  - [Test files](#test-files)
+  - [Test methods](#test-methods)
+  - [Edge cases](#edge-cases)
+- [Tests directory layout](#tests-directory-layout)
+- [Mocking](#mocking)
+  - [General guidelines](#general-guidelines)
+  - [Mocking third-Party Systems](#mocking-third-party-systems)
+  - [Database mocking Options](#database-mocking-options-to-be-studied)
+- [Fixtures and data mocks naming](#fixtures-and-data-mocks-naming)
+  - [Mock fixtures](#mock-fixtures)
+  - [Tools fixtures](#tools-fixtures)
+  - [Data mocks](#data-mocks)
+- [Test coverage](#test-coverage)
+  - [Coverage requirements](#coverage-requirements)
+  - [Coverage configuration](#coverage-configuration)
+  - [Checking coverage](#checking-coverage)
+- [Test-Driven development (TDD)](#test-driven-development-tdd)
+  - [Red-Green-refactor Methodology](#red-green-refactor-methodology)
+  - [Key principles of TDD](#key-principles-of-tdd)
+- [Visual studio code test debugging configuration](#visual-studio-code-test-debugging-configuration)
+- [Special thanks](#special-thanks)
 
 ---
 
@@ -55,79 +55,6 @@ Characteristics:
 - Validate interactions between components, such as services, APIs, and internal modules.
 - Test end-to-end scenarios involving multiple components within the project.
 - Use mocked dependencies to simulate interactions with external systems, avoiding real system dependencies.
-
-## Test coverage
-
-### Coverage requirements
-- **Minimum coverage**: 80% of the codebase.
-- **Reason**: 
-  - This threshold applies the **Pareto Principle**, which suggests that 80% of bugs are typically found in 20% of the modules.
-  - Ensuring this level of coverage helps identify and address potential issues early in development.
-
-### Coverage configuration
-To ensure that your codebase is properly covered by tests, we use **pytest-cov** for measuring test coverage. The following configuration is provided as an example template for your project.
-
-#### Base `.coveragerc` configuration:
-The `.coveragerc` file contains the configuration for **coverage** and is used by pytest-cov during test runs to track test coverage.
-
-```ini
-[coverage:run]
-branch = True      # Enables branch coverage, which ensures coverage reports consider code branches.
-source =           # Specifies which directories or packages to include in the coverage analysis, you can list multiple items here.
-    your_package_name
-omit =             # Exclude specific files or directories from being included in the coverage report,  you can list multiple items here.
-    */directory_name/*
-    */file_name.py
-
-[coverage:report]
-show_missing = True     # Shows lines that are not covered in the report.
-skip_covered = True     # Skips displaying files that have full coverage.
-focus = True            # Focuses on files that have the most important code (useful for large projects).
-include =               # Specifies the files or directories to include in the report.
-    app/*
-fail_under = 80         # Fails the test if the coverage percentage is below a certain threshold.
-
-[coverage:html]
-directory = htmlcov         # Defines the output directory for the HTML report.
-title = Coverage Report     # The title of the HTML coverage report page
-
-[coverage:xml]
-output = coverage.xml      # Specifies the output file for the XML report.
-
-[coverage:json]      
-output = coverage.json     # Specifies the output file for the JSON report.
-
-[coverage:debug]
-trace = True       # Traces code execution during coverage collection
-config = True      # Displays the configuration being used
-data = True        # Shows coverage data in detail
-```
-### Checking coverage
-Test coverage must be verified before pushing changes to the remote branch. Use the following `pytest` command to generate an HTML coverage report:
-
-```bash
-pytest --cov=<your_package_name> --cov-report=html
-```
-
-- Replace `<your_package_name>` with the name of the package or directory you want to measure coverage for.
-- This command creates a detailed HTML report in a `htmlcov` directory, which can be opened in a browser for review.
-
-## Mocking
-
-### General guidelines
-- Use `pytest-mock` to mock method behaviors or responses.
-- Use a `BaseMock` abstract class, implemented for each specific mock needed during testing.
-- Centralize all mocked data samples in a `mock_data.py` data file.
-- Centralize all mock fixtures in `conftest.py` data file.
-
-### Mocking third-party systems
-- Mock API responses using `request_mock` fixtures to simulate external system behavior.
-- Avoid directly patching functions that can be naturally invoked during integration tests to ensure realistic simulations.
-
-### Database mocking options (To be studied):
-- **In-Memory Database**: Lightweight but may lack real-world simulation capabilities.
-- **Throwable Docker Containers**: Use database images to create isolated environments during testing.
-- **Dedicated Testing Database**: Set up a real database instance exclusively for test purposes to ensure high-fidelity simulations.
 
 ## Test dependencies
 
@@ -172,7 +99,6 @@ log_cli_level = INFO                                # Specifies the logging leve
 log_cli_format = %(asctime)s [%(levelname)s]        # Specifies the format for the log output in the CLI.
 log_cli_data_format = %Y-%m-%d %H:%M:%S             # Defines the date format for the timestamp in log messages.
 ```
-
 ## Tests naming patterns
 
 ### Test files
@@ -216,6 +142,60 @@ log_cli_data_format = %Y-%m-%d %H:%M:%S             # Defines the date format fo
 ### Edge cases
 - Include specific edge cases in the test name using `edge_case_<edge_case_name>`.
 - Use keywords like `with_valid_params` or `with_invalid_params` depending on the case for different parameter types.
+
+## Tests directory layout
+```
+tests/
+├── conftest.py             # Shared mocks and tool fixtures
+├── mocks/
+│   └── base_mock.py        # Abstract BaseMock class
+├── unit_tests/             # Unit tests directory
+│   ├── components_dir_1/   # Component directory (e.g., /services)
+│   │   ├── conftest.py     # Shared mocks fixtures for current component directory
+│   │   ├── mock_data.py    # Shared data mocks samples for current component directory
+│   │   ├── test_component_dir_1_1.py  # Component test file
+│   │   └── test_component_dir_1_2.py
+│   │   ...                # Additional component test files
+│   ├── component_dir_2/
+│   │   ├── conftest.py
+│   │   ├── mock_data.py
+│   │   ├── test_component_dir_2_1.py
+│   │   └── test_component_dir_2_2.py
+│   │   ...
+│   └── ...                 # Additional component directories
+├── integration_tests/      # Integration tests directory (e.g., /views)
+│   ├── integration_dir_1/
+│   │   ├── conftest.py     # Shared data mocks samples for current integration directory
+│   │   ├── mock_data.py    # Shared mocks fixtures for current integration directory
+│   │   ├── test_integration_dir_1_1.py      # Integration test file
+│   │   └── test_integration_dir_1_2.py
+│   │   ...                 # Additional integration test files
+│   ├── integration_dir_2/
+│   │   ├── conftest.py
+│   │   ├── mock_data.py
+│   │   ├── test_integration_dir_2_1.py
+│   │   └── test_integration_dir_2_2.py
+│   │   ...
+│   └── ...                 # Additional integration directories
+
+```
+
+## Mocking
+
+### General guidelines
+- Use `pytest-mock` to mock method behaviors or responses.
+- Use a `BaseMock` abstract class, implemented for each specific mock needed during testing.
+- Centralize all mocked data samples in a `mock_data.py` data file.
+- Centralize all mock fixtures in `conftest.py` data file.
+
+### Mocking third-party systems
+- Mock API responses using `request_mock` fixtures to simulate external system behavior.
+- Avoid directly patching functions that can be naturally invoked during integration tests to ensure realistic simulations.
+
+### Database mocking options (To be studied):
+- **In-Memory Database**: Lightweight but may lack real-world simulation capabilities.
+- **Throwable Docker Containers**: Use database images to create isolated environments during testing.
+- **Dedicated Testing Database**: Set up a real database instance exclusively for test purposes to ensure high-fidelity simulations.
 
 ## Fixtures and data mocks naming
 
@@ -276,43 +256,61 @@ Use this naming convention for fixtures that provide testing utilities or tools 
   - Store all data mocks in a central file (e.g., `mock_data.py`) for consistency and easy maintenance.  
   - Document each scenario within the mock data file so other developers understand the differences and intended uses of each variant.
 
+## Test coverage
 
-## Test directory layout
-```
-tests/
-├── conftest.py             # Shared mocks and tool fixtures
-├── mocks/
-│   └── base_mock.py        # Abstract BaseMock class
-├── unit_tests/             # Unit tests directory
-│   ├── components_dir_1/   # Component directory (e.g., /services)
-│   │   ├── conftest.py     # Shared mocks fixtures for current component directory
-│   │   ├── mock_data.py    # Shared data mocks samples for current component directory
-│   │   ├── test_component_dir_1_1.py  # Component test file
-│   │   └── test_component_dir_1_2.py
-│   │   ...                # Additional component test files
-│   ├── component_dir_2/
-│   │   ├── conftest.py
-│   │   ├── mock_data.py
-│   │   ├── test_component_dir_2_1.py
-│   │   └── test_component_dir_2_2.py
-│   │   ...
-│   └── ...                 # Additional component directories
-├── integration_tests/      # Integration tests directory (e.g., /views)
-│   ├── integration_dir_1/
-│   │   ├── conftest.py     # Shared data mocks samples for current integration directory
-│   │   ├── mock_data.py    # Shared mocks fixtures for current integration directory
-│   │   ├── test_integration_dir_1_1.py      # Integration test file
-│   │   └── test_integration_dir_1_2.py
-│   │   ...                 # Additional integration test files
-│   ├── integration_dir_2/
-│   │   ├── conftest.py
-│   │   ├── mock_data.py
-│   │   ├── test_integration_dir_2_1.py
-│   │   └── test_integration_dir_2_2.py
-│   │   ...
-│   └── ...                 # Additional integration directories
+### Coverage requirements
+- **Minimum coverage**: 80% of the codebase.
+- **Reason**: 
+  - This threshold applies the **Pareto Principle**, which suggests that 80% of bugs are typically found in 20% of the modules.
+  - Ensuring this level of coverage helps identify and address potential issues early in development.
 
+### Coverage configuration
+To ensure that your codebase is properly covered by tests, we use **pytest-cov** for measuring test coverage. The following configuration is provided as an example template for your project.
+
+#### Base `.coveragerc` configuration:
+The `.coveragerc` file contains the configuration for **coverage** and is used by pytest-cov during test runs to track test coverage.
+
+```ini
+[coverage:run]
+branch = True      # Enables branch coverage, which ensures coverage reports consider code branches.
+source =           # Specifies which directories or packages to include in the coverage analysis, you can list multiple items here.
+    your_package_name
+omit =             # Exclude specific files or directories from being included in the coverage report,  you can list multiple items here.
+    */directory_name/*
+    */file_name.py
+
+[coverage:report]
+show_missing = True     # Shows lines that are not covered in the report.
+skip_covered = True     # Skips displaying files that have full coverage.
+focus = True            # Focuses on files that have the most important code (useful for large projects).
+include =               # Specifies the files or directories to include in the report.
+    app/*
+fail_under = 80         # Fails the test if the coverage percentage is below a certain threshold.
+
+[coverage:html]
+directory = htmlcov         # Defines the output directory for the HTML report.
+title = Coverage Report     # The title of the HTML coverage report page
+
+[coverage:xml]
+output = coverage.xml      # Specifies the output file for the XML report.
+
+[coverage:json]      
+output = coverage.json     # Specifies the output file for the JSON report.
+
+[coverage:debug]
+trace = True       # Traces code execution during coverage collection
+config = True      # Displays the configuration being used
+data = True        # Shows coverage data in detail
 ```
+### Checking coverage
+Test coverage must be verified before pushing changes to the remote branch. Use the following `pytest` command to generate an HTML coverage report:
+
+```bash
+pytest --cov=<your_package_name> --cov-report=html
+```
+
+- Replace `<your_package_name>` with the name of the package or directory you want to measure coverage for.
+- This command creates a detailed HTML report in a `htmlcov` directory, which can be opened in a browser for review.
 
 ## Test-Driven Development (TDD)
 
