@@ -77,7 +77,7 @@ Characteristics:
 ## Test configuration
 
 ### Test configurations
-- Defined and read from a `config.json` file located in the project root directory.
+- Defined and read from a `config.template.json` file located in the project root directory.
 
 ### Pytest configuration
 - Configurations defined in `pytest.ini` located in the project root directory.
@@ -320,7 +320,7 @@ Test-Driven Development is a software development methodology in which tests are
 
 - **Red**: 
   - The first step is to write a test for a feature or functionality that does not exist yet. At this point, the test will fail because the corresponding code has not been written. The failure (Red) is intentional and serves as a signal that the code is   incomplete. This step helps to clarify the desired behavior of the system.
-  - **Example**: Write a test that expects a new function, such as `add_item_to_cart()`, to return the updated cart with an item added, even though this function has not been implemented yet.
+  - **Example**: Write a test called `test_add_item_to_cart()` that expects a new function, such as `add_item_to_cart()`, to return the updated cart with an item added, even though this function has not been implemented yet.
 
 - **Green**:
   - The second step is to write the minimum amount of code necessary to make the test pass. The goal is not to write the perfect solution but simply to pass the test. Once the test passes (Green), we know that the feature works as expected in the context of the specific test case.
@@ -328,7 +328,7 @@ Test-Driven Development is a software development methodology in which tests are
 
 - **Refactor**:
   - The final step is to refactor the code to improve its design, structure, or performance without changing its functionality. This step is performed after the test passes and ensures that the codebase remains clean and maintainable. During this phase, the focus is on eliminating duplication, improving readability, and optimizing performance.
-  - **Example**: After making the test pass, refactor the `add_item_to_cart()` function to handle edge cases (e.g., adding items to an empty cart), improve error handling, or apply design patterns for better scalability or flexibility.
+  - **Example**: After making the test `test_add_item_to_cart()` pass, refactor the `add_item_to_cart()` function to handle edge cases (e.g., adding items to an empty cart), improve error handling, or apply design patterns for better scalability or flexibility.
 
 ### Key principles of TDD:
 - **Write Tests First**: Always write a test before writing the implementation. This ensures that the code is testable and that you are focusing on the required functionality.
@@ -386,4 +386,3 @@ Follow these steps to configure and debug your tests within Visual Studio Code:
 
 ## Special thanks
 A heartfelt appreciation to the entire automation team. This documentation, along with its standards and practices, is a direct result of our dedication, collaboration, and continuous effort.
-
