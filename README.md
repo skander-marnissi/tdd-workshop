@@ -1,25 +1,25 @@
-{
-    "python.testing.pytestArgs": [
-        "tests"
-    ],
-    "python.testing.unittestEnabled": false,
-    "python.testing.pytestEnabled": true
-}
-{
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-    "version": "0.2.0",
+Debugger configuration for python on Visual studio code:
+
+"version": "0.2.0",
     "configurations": [
-       {
-            "name": "Debug Unit Test",
+        {
+            "name": "Python Debugger",
             "type": "debugpy",
             "request": "launch",
-            "justMyCode": false,
-            "purpose": ["debug-test"],
-            "console": "integratedTerminal",
+            "module": "uvicorn",
+            "args": [
+                "--port", "5002",
+                "--host", "0.0.0.0",
+                "cdp_api_foundation:get_app",
+                "--reload",
+        
+            ],
             "env": {
-                "PYTEST_ADDOPTS": "--no-cov"
-                }
-       }]
-}
+                "REQUESTS_CA_BUNDLE": "paste the outputted path of 'python -m unipass' displayed path in here",
+                "PYTHONPATH":"${workspaceFolder}/src",
+                "OPENAPI_SPEC_PATH": "${workspaceFolder}/src/cd_usage_declaration/openapi_spec.yaml"
+            },
+            "console": "integratedTerminal",
+            "justMyCode": true,
+        }
+}]
