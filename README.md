@@ -1,25 +1,52 @@
 Debugger configuration for python on Visual studio code:
 
-"version": "0.2.0",
-    "configurations": [
+"configurations": [
         {
-            "name": "Python Debugger",
+            "name": "Custom Python Debugger",
             "type": "debugpy",
             "request": "launch",
             "module": "uvicorn",
             "args": [
-                "--port", "5002",
+                "--port", "PORT_NUMBER",
                 "--host", "0.0.0.0",
                 "cdp_api_foundation:get_app",
                 "--reload",
-        
             ],
             "env": {
-                "REQUESTS_CA_BUNDLE": "paste the outputted path of 'python -m unipass' displayed path in here",
+                "REQUESTS_CA_BUNDLE": "paste the outputted path of 'python -m unipass' displayed path in here"
                 "PYTHONPATH":"${workspaceFolder}/src",
-                "OPENAPI_SPEC_PATH": "${workspaceFolder}/src/cd_usage_declaration/openapi_spec.yaml"
+                "OPENAPI_SPEC_PATH": "${workspaceFolder}/src/user_access_manager/openapi_spec.yaml"
             },
             "console": "integratedTerminal",
             "justMyCode": true,
-        }
-}]
+        },
+        {
+            "name": "Custom Celery Debugger",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "celery",
+            "args": [
+                "-A", "user_access_manager.celery.workers",
+                "worker",
+                "--loglevel","INFO",
+                "--concurrency","2",
+                "-P","solo"
+            ],
+            "env": {
+                "PYTHONPATH":"${workspaceFolder}/src",
+            },
+            "console": "integratedTerminal",
+            "justMyCode": true,
+        },
+        {
+            "name": "Custom Test Debugger",
+            "type": "debugpy",
+            "request": "launch",
+            "justMyCode": false,
+            "purpose": ["debug-test"],
+            "console": "integratedTerminal",
+            "env": {
+              "PYTEST_ADDOPTS": "--no-cov"
+            }
+          }
+    ]
