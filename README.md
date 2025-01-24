@@ -5,41 +5,12 @@ This documentation provides an explanation of the debugger configurations in the
 ---
 
 ## Summary
-- [Debugger configurations](#required-tests)
-  - [Unit tests](#unit-tests)
-  - [Integration tests](#integration-tests)
-- [Test dependencies](#test-dependencies)
-  - [Testing dependency](#testing-dependency)
-  - [Coverage](#coverage)
-  - [Mocks and stubbing](#mocks-and-stubbing)
-  - [Performance and stress testing](#performance-and-stress-testing)
-  - [Specialized testing](#specialized-testing)
-- [Test configuration](#test-configuration)
-  - [Test configurations](#test-configurations)
-  - [Pytest configuration](#pytest-configuration)
-- [Tests naming patterns](#tests-naming-patterns)
-  - [Test files](#test-files)
-  - [Test methods](#test-methods)
-  - [Edge cases](#edge-cases)
-- [Tests directory layout](#tests-directory-layout)
-- [Mocking](#mocking)
-  - [General guidelines](#general-guidelines)
-  - [Mocking third-Party Systems](#mocking-third-party-systems)
-  - [Database mocking Options](#database-mocking-options-to-be-studied)
-- [Fixtures and data mocks naming](#fixtures-and-data-mocks-naming)
-  - [Mock fixtures](#mock-fixtures)
-  - [Tools fixtures](#tools-fixtures)
-  - [Data mocks](#data-mocks)
-- [Test coverage](#test-coverage)
-  - [Coverage requirements](#coverage-requirements)
-  - [Coverage configuration](#coverage-configuration)
-  - [Checking coverage](#checking-coverage)
-- [Test-Driven development (TDD)](#test-driven-development-tdd)
-  - [Red-Green-refactor Methodology](#red-green-refactor-methodology)
-  - [Key principles of TDD](#key-principles-of-tdd)
-- [Visual studio code test debugging configuration](#visual-studio-code-test-debugging-configuration)
-- [Special thanks](#special-thanks)
-
+- [Debugger configurations](#debugger-configurations)
+  - [Custom Python debugger](#1-custom-python-debugger)
+  - [Custom Celery debugger](#2-custom-celery-debugger)
+  - [Custom test debugger](#3-custom-test-debugger)
+- [Configuration example](#configuration-example)
+  
 ---
 
 ## Debugger configurations
@@ -165,7 +136,7 @@ This configuration is designed to debug python tests.
 ##### <ins>**Note**:</ins>
 To run correctly this configuration you will have to install the `Python` extension on VSCode.
 
-### 4. Example of whole debbug configuration in `launch.json` file
+## Configuration example
 ```json
 {
     "version": "VERSION",
