@@ -10,6 +10,11 @@ This documentation provides an explanation of the debugger configurations in the
   - [Custom Celery debugger](#2-custom-celery-debugger)
   - [Custom test debugger](#3-custom-test-debugger)
 - [Configuration example](#configuration-example)
+- [Run your debbuger](#run-your-debugger)
+  - [Step 1](#step-1)
+  - [Step 2](#step-2)
+  - [Step 3](#step-3)
+  
   
 ---
 
@@ -191,3 +196,19 @@ To run correctly this configuration you will have to install the `Python` extens
         }
     ]
 }
+```
+## Run your debugger
+
+### Step 1
+After setting your configuration click on the `Run and Debug` icon locate on the left sidebar (or by shortcut `Ctrl+Shift+D`) to open the debug view. 
+
+### Step 2
+On the top of the view you will find a dropdown list containing your different configuration, chose one debug configuration and press `Start Debugging` button (or by shortcut `F5`).
+[Image]
+
+### Step 3
+Check if your debugger is running well in your terminal.
+[image-step-3-1]
+
+You can then put some breakpoints, run your scripts and follow the process step by step.
+[image-step-3-2]
