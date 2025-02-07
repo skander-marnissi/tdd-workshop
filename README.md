@@ -212,3 +212,32 @@ Check if your debugger is running well in your terminal.
 
 You can then put some breakpoints, run your scripts and follow the process step by step.
 [image-step-3-2]
+
+
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: celery-worker
+  template:
+    metadata:
+      labels:
+        app: celery-worker
+    spec:
+      containers:
+      - name: worker
+        image: your-celery-image
+        command: ["celery", "-A", "your_project", "worker", "--loglevel=info"]
+        livenessProbe:
+          exec:
+            command: ["/bin/sh", "-c", "python3 /path/to/celery-healthcheck.py"]
+          initialDelaySeconds: 10
+          periodSeconds: 30
+          failureThreshold: 3
+        readinessProbe:
+          exec:
+            command: ["/bin/sh", "-c", "python3 /path/to/celery-healthcheck.py"]
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          failureThreshold: 2
