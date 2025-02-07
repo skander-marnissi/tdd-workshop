@@ -214,7 +214,7 @@ You can then put some breakpoints, run your scripts and follow the process step 
 [image-step-3-2]
 
 
-
+```yaml
 spec:
   replicas: 1
   selector:
