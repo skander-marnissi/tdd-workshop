@@ -241,3 +241,135 @@ spec:
           initialDelaySeconds: 5
           periodSeconds: 10
           failureThreshold: 2
+```
+______
+
+Slide 1 — Title Slide
+
+Title:
+🚀 Why We Should Switch to Poetry
+
+Subtitle:
+A Modern Approach to Python Dependency Management
+
+Notes:
+Set the tone — this is a pragmatic pitch, not just a hype talk.
+
+⸻
+
+Slide 2 — The Current Situation
+
+Title:
+🔧 Python Project Management Today
+
+Content (Bullets):
+	•	pip + requirements.txt is basic and manual
+	•	No built-in project metadata management
+	•	Dependency conflicts are common
+	•	Manual version pinning & updates
+	•	Separate tools for packaging (e.g., setuptools)
+
+Notes:
+Explain the fragmented tooling landscape with classic pip workflows.
+
+⸻
+
+Slide 3 — What is Poetry?
+
+Title:
+🛠️ Poetry — The All-in-One Tool
+
+Content (Bullets):
+	•	Dependency management + packaging + publishing
+	•	Single source of truth: pyproject.toml
+	•	Reproducible installs with poetry.lock
+	•	Virtual environment management included
+	•	Built-in version resolver
+
+Notes:
+Highlight it’s not just a package manager — it’s a complete ecosystem.
+
+⸻
+
+Slide 4 — Key Advantages for Developers
+
+Title:
+👩‍💻 Why Developers Love Poetry
+
+Content (Bullets):
+	•	Simple commands for adding/removing packages
+	•	Automatic dependency resolution
+	•	Consistent environments across dev/test/CI
+	•	Simplifies onboarding new developers
+	•	Clean pyproject.toml for project config
+
+Notes:
+Focus on daily workflow improvements.
+
+⸻
+
+Slide 5 — Advantages for Teams & CI/CD
+
+Title:
+🤝 Why Teams & Pipelines Love Poetry
+
+Content (Bullets):
+	•	Lockfile guarantees reproducibility
+	•	Easy integration with CI/CD
+	•	Standardized project layout
+	•	Compatible with modern Python build tools
+	•	Easier dependency upgrades & tracking
+
+Notes:
+Position Poetry as a reliability & governance tool for teams.
+
+⸻
+
+Slide 6 — Addressing Common Objections
+
+Title:
+❓ Common Questions & Misconceptions
+
+Content (Bullets):
+	•	✅ “It works with pip” — Yes, Poetry can export requirements.txt
+	•	✅ “Learning curve?” — Simple commands, great docs
+	•	✅ “Mature enough?” — Used in production by major projects
+	•	✅ “Performance?” — Faster dependency resolution with new resolver
+
+Notes:
+Preempt resistance by clearing misconceptions.
+
+⸻
+
+Slide 7 — Summary & Recommendation
+
+Title:
+🚩 Why We Should Adopt Poetry
+
+Content (Bullets):
+	•	Unified tool simplifies development & maintenance
+	•	Reduces risk of dependency conflicts
+	•	Eases project setup, onboarding, and CI/CD integration
+	•	Future-proof with modern Python standards
+
+Bottom Line:
+👉 Let’s pilot Poetry in our next project!
+
+Slide 6 — Poetry vs. Pipenv
+
+Title:
+⚖️ Poetry vs. Pipenv — Key Differences
+
+
+| Feature                  | Poetry                        | Pipenv                     |
+|--------------------------|-------------------------------|-----------------------------|
+| **Project Metadata**     | ✅ Built-in (PEP 621)         | ❌ Needs setup.cfg or other tools |
+| **Dependency Resolver**  | ✅ Fast & reliable             | ⚠️ Known resolver issues      |
+| **Packaging & Build**    | ✅ Included (PEP 517 compliant) | ❌ Not designed for packaging |
+| **Virtual Environment**  | ✅ Integrated & automatic      | ✅ Integrated                 |
+| **Popularity & Adoption**| 📈 Growing & stable           | 📉 Declining since 2021      |
+| **CLI Experience**       | ✅ Intuitive & consistent      | ⚠️ Sometimes confusing        |
+| **Python Version Control** | ✅ Integrated in pyproject.toml | ✅ Managed with Pipfile      |
+
+Notes:
+Explain that while Pipenv was promising, it didn’t evolve — Poetry is actively maintained, follows Python packaging standards, and works both for libraries and apps.
