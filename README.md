@@ -373,3 +373,15 @@ Title:
 
 Notes:
 Explain that while Pipenv was promising, it didn’t evolve — Poetry is actively maintained, follows Python packaging standards, and works both for libraries and apps.
+
+
+
+USER STORY
+
+Who ?: Automation Team
+What ?: Want to plan a meeting to have feedback from other tribes about difficulties to update DMAP
+Why ?: To decide if we will suggest a new process to Security team.
+
+FUNCTIONAL DETAILS
+
+The Automation Team must plan a meeting with other tribes' member when they will be back from holidays (plan now for the future while their calendars are not completely full)
