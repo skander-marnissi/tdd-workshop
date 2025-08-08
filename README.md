@@ -385,3 +385,28 @@ Why ?: To decide if we will suggest a new process to Security team.
 FUNCTIONAL DETAILS
 
 The Automation Team must plan a meeting with other tribes' member when they will be back from holidays (plan now for the future while their calendars are not completely full)
+
+
+
+
+
+
+
+
+
+
+
+
+Hi everyone,
+
+Hope you’re all doing well and enjoying the summer!
+
+The Automation Team would like to plan a short meeting (post-holidays) with members from different tribes to gather your feedback on the current difficulties in updating DMAP. The goal is to understand the pain points and decide whether we should propose a new process to the Security team.
+
+We’re reaching out now to make sure we can find a slot before everyone’s calendars start to fill up again. Could you please let us know your general availability for the end of August / early September?
+
+Looking forward to hearing from you!
+
+Best regards,
+[Your Name]
+On behalf of the Automation Team
